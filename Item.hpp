@@ -13,7 +13,6 @@ Item.hpp
 class Item
 {
 public:
-
 	Item(std::string name, float price);
 	~Item(void);
 	
@@ -21,7 +20,6 @@ public:
 	float getPrice();
 
 private:
-	
 	std::string _name;
 	float _price;
 };

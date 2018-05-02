@@ -15,14 +15,24 @@ int main(){
 	Item test("Banane", 2.0);
 
 	float prix;
+	int yolo;
 
 	prix = test.getPrice();
+	std::cout << "Prix banane : " << prix << std::endl;
 
-	lol();
+	Aisle range(1, 10);
+
+	yolo = range.getNumber();
+	std::cout << "num de range " << yolo << std::endl;
+
+	range.add(test, 2);
+	range.add(test, 2);
+	range.add(test, 2);
+	range.add(test, 2);
+	range.add(test, 2);
+	range.add(test, 2);
 
 	lolplease();
-
-	std::cout << prix << std::endl;
 	
 	return 0;
 }
