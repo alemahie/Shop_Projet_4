@@ -4,3 +4,10 @@ Lemahieu Antoine
 
 Aisle.hpp
 */
+
+#ifndef DEF_AISLE
+#define DEF_AISLE
+
+void lol();
+
+#endif

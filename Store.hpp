@@ -5,3 +5,9 @@ Lemahieu Antoine
 Store.hpp
 */
 
+#ifndef DEF_STORE
+#define DEF_STORE
+
+void lolplease();
+
+#endif

@@ -18,5 +18,5 @@ Store.o: Store.cpp Store.hpp
 	$(CXX) $(FLAGS) -c Store.cpp
 
 .PHONY : clean
-2clean:
-2	rm *.o *.out;
+clean:
+	rm *.o *.out;

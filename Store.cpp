@@ -4,3 +4,10 @@ Lemahieu Antoine
 
 Store.cpp
 */
+
+#include <iostream>
+#include "Store.hpp"
+
+void lolplease(){
+	std::cout << "Hello 2" << std::endl;
+}

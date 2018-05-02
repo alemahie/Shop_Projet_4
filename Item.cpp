@@ -6,20 +6,27 @@ Item.cpp
 */
 
 #include <iostream>
+#include "Item.hpp"
 
-class Item(){
-	std::string _name;
-	float _price;
-	
-	public:
-		
-		getName()
-		{
-			return _name;
-		}
-		getPrice()
-		{
-			return _price;
-		}
-		
-};
+/* Constructeur */ 
+Item::Item(std::string name, float price) : _name(name), _price(price)
+{
+
+}
+
+/* Destructeur */ 
+Item::~Item()
+{
+
+}
+
+std::string Item::getName()
+{
+	return _name;
+}
+
+float Item::getPrice()
+{
+	return _price;
+}
+
