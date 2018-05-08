@@ -1,9 +1,5 @@
-/*
-Lemahieu Antoine
-04/2018
+// Lemahieu Antoine 000457582 - 1ère bachelier en sciences informatique
 
-Item.cpp
-*/
 
 #include <iostream>
 #include "Item.hpp"
@@ -20,12 +16,12 @@ Item::~Item()
 
 }
 
-std::string Item::getName()
+std::string Item::getName() const
 {
 	return _name;
 }
 
-float Item::getPrice()
+float Item::getPrice() const
 {
 	return _price;
 }
