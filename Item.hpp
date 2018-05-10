@@ -8,6 +8,7 @@
 class Item
 {
 public:
+	Item();
 	Item(std::string name, float price);
 	~Item(void);
 	

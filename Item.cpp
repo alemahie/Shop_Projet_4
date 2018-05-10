@@ -4,6 +4,11 @@
 #include <iostream>
 #include "Item.hpp"
 
+Item::Item() : _name(""), _price(0)
+{
+
+}
+
 /* Constructeur */ 
 Item::Item(std::string name, float price) : _name(name), _price(price)
 {

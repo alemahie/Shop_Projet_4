@@ -1,15 +1,16 @@
 // Lemahieu Antoine 000457582 - 1ère bachelier en sciences informatique
 
 #include <iostream>
+#include <vector>
 #include "Aisle.hpp"
 #include "Item.hpp"
 
-Aisle::Aisle() : _number(0), _capacity(0)
+Aisle::Aisle() : _number(0), _capacity(0), _size(0)
 {
 
 }
 
-Aisle::Aisle(int number, int capacity) : _number(number), _capacity(capacity)
+Aisle::Aisle(int number, int capacity) : _number(number), _capacity(capacity), _size(0)
 {
 
 }
@@ -21,7 +22,7 @@ Aisle::~Aisle()
 
 void Aisle::describe() const
 {
-	std::cout << "Dans ce rayon il y a :" << std::endl;
+	std::cout << "Dans le rayon " << _number << " il y a :" << std::endl;
 	for(unsigned int i = 0; i < _items.size(); i++)
 	{
 		std::cout << "- " << _items[i].getName() << ", il y en a " << _itemsNumber[i] << " au prix de " << _items[i].getPrice() << " ULB dollars."<< std::endl;
@@ -30,13 +31,8 @@ void Aisle::describe() const
 
 void Aisle::add(Item item, int numberAdd)
 {
-
-	std::cout << _capacity << std::endl;
-	
 	if(_capacity - numberAdd >= 0)
 	{
-		std::cout << "Ok" << std::endl;
-	
 		bool found = false;		
 		unsigned int i = 0;
 
@@ -56,13 +52,45 @@ void Aisle::add(Item item, int numberAdd)
 			_items.push_back(item);
 			_itemsNumber.push_back(numberAdd);	
 			_capacity -= numberAdd;
+			_size += 1;
 		}
 	}
 	else
 	{
-		std::cout << "Il n'y a malheuresement pas assez de place dans ce rayon, connard." << std::endl;
+		std::cout << "Pas assez de place dans le rayon numéro " << this->getNumber() << " pour ajouter " << numberAdd << " " << item.getName() << std::endl;
 	}
 }
+
+void Aisle::remove(Item item, int numberRmv)
+{
+	unsigned int i = 0;
+	bool found = false;
+	
+	while(i < _items.size() and not found)
+	{
+		if(item.getName() == _items[i].getName())
+		{
+			if(_itemsNumber[i] - numberRmv > 0)
+			{
+				_itemsNumber[i] -= numberRmv;
+				_capacity += numberRmv;
+			}
+			else if(_itemsNumber[i] - numberRmv == 0)
+			{
+				_items.erase(_items.begin()+i);
+				_itemsNumber.erase(_itemsNumber.begin()+i);
+				_capacity += numberRmv;
+				_size -= 1;
+			}
+			else
+			{
+				std::cout << "Il n'y a pas assez d'éléments à enlever, désolé." << std::endl;
+			}
+		}
+		i++;
+	}	
+}
+
 
 int Aisle::getNumber() const
 {
@@ -72,5 +100,30 @@ int Aisle::getNumber() const
 int Aisle::getCapacity() const
 {
 	return _capacity;
+}
+
+int Aisle::getSize() const
+{
+	return _size;
+}
+
+Item Aisle::getItem(int i) const
+{
+	return _items[i];
+}
+
+int Aisle::getItemNumber(int i) const
+{
+	return _itemsNumber[i];
+}
+
+float Aisle::getSum() const
+{
+	float sum = 0;
+	for(unsigned int i = 0; i < _items.size(); i++)
+	{
+		sum += (_items[i].getPrice() * float(_itemsNumber[i]));		// May do that ?
+	}
+	return sum;
 }
 

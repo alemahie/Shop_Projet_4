@@ -14,12 +14,18 @@ public:
 	~Aisle(void);
 	void describe() const;
 	void add(Item item, int numberAdd);
+	void remove(Item item, int numberRmv);
 	int getNumber() const;
 	int getCapacity() const;
+	int getSize() const;
+	Item getItem(int i) const;
+	int getItemNumber(int i) const;
+	float getSum() const;
 
 private:
 	int const _number;
 	int _capacity;
+	int _size;
 	std::vector<Item> _items = {};
 	std::vector<int> _itemsNumber = {};
 };
