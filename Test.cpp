@@ -44,6 +44,8 @@ int main(){
 	aisle.describe();
 
 
+	//std::cout << "Pas assez de place dans le rayon numéro " << this->getNumber() << " pour ajouter " << numberAdd << " " << item.getName() << std::endl;
+	
 
 	// Store.
 	std::cout << "-------------------------------" << std::endl << "Test class Store :" << std::endl << std::endl;
@@ -58,16 +60,25 @@ int main(){
 	std::vector<Item> items = {biere, chemise, feuilles, pomme, banane};
 	std::vector<int> itemsNumber = {7,5,10,5,3};
 	magasin.receiveShipment(items, itemsNumber);	//receiveShipment()
+	std::cout << std::endl;
 	magasin.getActifs();							//getActifs()
 	magasin.describe();								//describe()
+	std::cout << std::endl;
 
-	/*
+	for(unsigned int i = 0; i < 5; i++)
+	{
+		ptr = magasin.getAisle(i);
+		ptr->describe();
+	}
+
 	items = {eau};
 	itemsNumber = {50};
+	std::cout << std::endl;
 	magasin.receiveShipment(items, itemsNumber);	//receiveShipment error
-	magasin.getActifs();
-	magasin.describe();
 
+	items = {biere};
+
+	/*
 	items = {biere, chemise, feuilles, pomme};
 	itemsNumber = {4,7,10,1};
 	magasin.sell(items, itemsNumber);				//sell()

@@ -72,21 +72,41 @@ void Store::describe()
 void Store::receiveShipment(std::vector<Item> items, std::vector<int> itemsNumber)
 {	
 	Item item;
-	int number;
+	int number, j, sum = 0;
 	Aisle* ptr = nullptr;
+	bool added;
 
 	for(unsigned int i = 0; i < items.size(); i++)
 	{
-		item = items[i];
-		number = itemsNumber[i];
-		for(int j = 0; j < _aislesNumber; j++)
-		{
-			ptr = this->getAisle(j);
-			
-		}
-		
-		
+		sum += itemsNumber[i];
 	}
+
+	if(_availableSpace - sum >= 0)
+	{
+		for(unsigned int i = 0; i < items.size(); i++)
+		{
+			item = items[i];
+			number = itemsNumber[i];
+			added = false;
+			j = 0;
+		
+			while(j < _aislesNumber and not added)
+			{
+				ptr = this->getAisle(j);
+				added = ptr->add(item, number);
+				j++;
+			}
+		
+			if(added)
+			{
+				_availableSpace -= number;
+			}
+		}
+	}
+	else
+	{
+		std::cout << "Pas assez de place dans le magasin pour cette livraison !" << std::endl;
+	}	
 }
 
 

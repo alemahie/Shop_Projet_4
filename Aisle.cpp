@@ -22,15 +22,23 @@ Aisle::~Aisle()
 
 void Aisle::describe() const
 {
-	std::cout << "Dans le rayon " << _number << " il y a :" << std::endl;
-	for(unsigned int i = 0; i < _items.size(); i++)
+	if(_items.size() == 0)
 	{
-		std::cout << "- " << _items[i].getName() << ", il y en a " << _itemsNumber[i] << " au prix de " << _items[i].getPrice() << " ULB dollars."<< std::endl;
+		std::cout << "Le rayon " << _number << " est vide." << std::endl;
+	}
+	else
+	{
+		std::cout << "Dans le rayon " << _number << " il y a :" << std::endl;
+		for(unsigned int i = 0; i < _items.size(); i++)
+		{
+			std::cout << "    - " << _items[i].getName() << ", il y en a " << _itemsNumber[i] << " au prix de " << _items[i].getPrice() << " ULB dollars."<< std::endl;
+		}
 	}
 }
 
-void Aisle::add(Item item, int numberAdd)
+bool Aisle::add(Item item, int numberAdd)
 {
+	bool added = true;
 	if(_capacity - numberAdd >= 0)
 	{
 		bool found = false;		
@@ -57,8 +65,9 @@ void Aisle::add(Item item, int numberAdd)
 	}
 	else
 	{
-		std::cout << "Pas assez de place dans le rayon numéro " << this->getNumber() << " pour ajouter " << numberAdd << " " << item.getName() << std::endl;
+		added = false;
 	}
+	return added;
 }
 
 void Aisle::remove(Item item, int numberRmv)

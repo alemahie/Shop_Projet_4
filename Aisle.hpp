@@ -13,7 +13,7 @@ public:
 	Aisle(int number, int capacity);
 	~Aisle(void);
 	void describe() const;
-	void add(Item item, int numberAdd);
+	bool add(Item item, int numberAdd);
 	void remove(Item item, int numberRmv);
 	int getNumber() const;
 	int getCapacity() const;
