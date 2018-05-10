@@ -101,6 +101,22 @@ void Store::receiveShipment(std::vector<Item> items, std::vector<int> itemsNumbe
 			{
 				_availableSpace -= number;
 			}
+			else	//Impossible de la placer directement, donc décomposition.
+			{
+				int gap;
+				j = 0;
+				while(j < _aislesNumber and number != 0)
+				{
+					ptr = this->getAisle(j);
+					gap = ptr->getCapacity();
+					if(gap > 0)
+					{
+						ptr->add(item, gap);
+						number -= gap;
+					}
+					j++;
+				}
+			}
 		}
 	}
 	else
@@ -112,7 +128,19 @@ void Store::receiveShipment(std::vector<Item> items, std::vector<int> itemsNumbe
 
 void Store::sell(std::vector<Item> items, std::vector<int> itemsNumber)
 {
+	int j;
+	Aisle* ptr = nullptr;
 
+	for(unsigned int i = 0; i < items.size(); i++)
+	{
+		j = 0;
+		while(itemsNumber[i] != 0 and j < _aislesNumber)
+		{
+			ptr = this->getAisle(j);
+			itemsNumber[i] = ptr->speRemove(items[i], itemsNumber[i]);
+			j++;
+		}
+	}
 }
 
 

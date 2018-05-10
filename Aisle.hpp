@@ -15,6 +15,7 @@ public:
 	void describe() const;
 	bool add(Item item, int numberAdd);
 	void remove(Item item, int numberRmv);
+	int speRemove(Item item, int numberRmv);
 	int getNumber() const;
 	int getCapacity() const;
 	int getSize() const;

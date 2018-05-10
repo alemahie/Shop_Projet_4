@@ -58,7 +58,7 @@ int main(){
 	ptr->describe();
 
 	std::vector<Item> items = {biere, chemise, feuilles, pomme, banane};
-	std::vector<int> itemsNumber = {7,5,10,5,3};
+	std::vector<int> itemsNumber = {6,5,10,5,3};
 	magasin.receiveShipment(items, itemsNumber);	//receiveShipment()
 	std::cout << std::endl;
 	magasin.getActifs();							//getActifs()
@@ -76,15 +76,49 @@ int main(){
 	std::cout << std::endl;
 	magasin.receiveShipment(items, itemsNumber);	//receiveShipment error
 
-	items = {biere};
+	items = {biere, pates, eau};
+	itemsNumber = {7, 4, 4};
+	magasin.receiveShipment(items, itemsNumber);
+	std::cout << std::endl;
+	magasin.getActifs();
+	magasin.describe();
+	std::cout << std::endl;
 
-	/*
+	for(unsigned int i = 0; i < 5; i++)
+	{
+		ptr = magasin.getAisle(i);
+		ptr->describe();
+	}
+
+	items = {biere, pates};
+	itemsNumber = {2, 2};
+	magasin.receiveShipment(items, itemsNumber);	//Shipment filling gaps.
+	std::cout << std::endl;
+	magasin.getActifs();
+	magasin.describe();
+	std::cout << std::endl;
+
+	for(unsigned int i = 0; i < 5; i++)
+	{
+		ptr = magasin.getAisle(i);
+		ptr->describe();
+	}
+
+
+	std::cout << std::endl << "Sell" << std::endl;
+
 	items = {biere, chemise, feuilles, pomme};
 	itemsNumber = {4,7,10,1};
 	magasin.sell(items, itemsNumber);				//sell()
+	std::cout << std::endl;
 	magasin.getActifs();
 	magasin.describe();
-	*/
+
+	for(unsigned int i = 0; i < 5; i++)
+	{
+		ptr = magasin.getAisle(i);
+		ptr->describe();
+	}
 
 	return 0;
 }

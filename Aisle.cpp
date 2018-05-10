@@ -101,6 +101,40 @@ void Aisle::remove(Item item, int numberRmv)
 }
 
 
+int Aisle::speRemove(Item item, int numberRmv)
+{
+	unsigned int i = 0; 
+	bool found = false;
+	while(i < _items.size() and not found)
+	{
+		if(item.getName() == _items[i].getName())
+		{
+			if(_itemsNumber[i] - numberRmv > 0)
+			{
+				_itemsNumber[i] -= numberRmv;
+				_capacity += numberRmv;
+			}
+			else if(_itemsNumber[i] - numberRmv == 0)
+			{
+				_items.erase(_items.begin()+i);
+				_itemsNumber.erase(_itemsNumber.begin()+i);
+				_capacity += numberRmv;
+				_size -= 1;
+			}
+			else
+			{
+				_items.erase(_items.begin()+i);
+				numberRmv -= _itemsNumber[i];
+				_itemsNumber.erase(_itemsNumber.begin()+i);
+			}
+		}
+		i++;
+	}	
+	return numberRmv;
+}
+
+
+
 int Aisle::getNumber() const
 {
 	return _number;
